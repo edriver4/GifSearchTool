@@ -50,7 +50,7 @@ $(document).on("click", ".favShow-btn", function () {
         for (var j = 0; j < data.length; j++) {
 
             // Creating and storing a div tag
-            var favShowDiv = $("<div>");
+            var favShowDiv = $("<div>").addClass("d-inline-block");
 
             // Creating a paragraph tag with the data item's rating.
             var r = $("<p>").text("Rating: " + data[j].rating);
@@ -58,10 +58,15 @@ $(document).on("click", ".favShow-btn", function () {
 
             // Creating and storing an image tag.
             var favShowImage = $("<img>");
-
+                favShowImage.addClass("gif-image");
             // Setting the src attribute of the image to a property pulled off the data item.
-            favShowImage.attr("src", data[j].images.fixed_height.url);
+            favShowImage.attr("src", data[j].images.fixed_height_still.url);
+            favShowImage.attr("data-still", data[j].images.fixed_height_still.url);
+            favShowImage.attr("data-animate", data[j].images.fixed_height.url);
+            favShowImage.attr("data-state", "still");
 
+
+        //    var state = favShowImage.attr("data-state");
             // Appending the paragraph (rating) and the image to the favShowDiv.
             favShowDiv.append(r);
             favShowDiv.append(favShowImage);
@@ -69,6 +74,17 @@ $(document).on("click", ".favShow-btn", function () {
             // Prepending the favShowDiv to the HTML page in the "#view-gif" div.
             $("#view-gif").prepend(favShowDiv);
         }
+        $(".gif-image").on("click", function(){
+        var state = $(this).attr("data-state");
+        
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        } else{
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+        });
     });
 
 });
