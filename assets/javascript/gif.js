@@ -24,9 +24,9 @@ var shows = [
     "entourage",
     "game of thrones",
     "ozark",
-    "frontier",
+    "the frontier",
     "ballers",
-    "westworld",
+    "the office",
     "hard knocks",
     "dragon ball z",
     "band of brothers",
@@ -34,18 +34,37 @@ var shows = [
 ];
 
 
-$(document).on("click", ".favShow-btn", function() {
+$(document).on("click", ".favShow-btn", function () {
     var type = $(this).attr("data-type")
-    var queryURL = `https://api.giphy.com/v1/gifs/search?q=${type}&api_key=nAYiFzfJkuua9j5fYUuu56apbYxVYmEp`;
+    var queryURL = `https://api.giphy.com/v1/gifs/search?q=${type}&api_key=nAYiFzfJkuua9j5fYUuu56apbYxVYmEp&limit=30`;
 
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         console.log('Response from giphy====>', response);
         var { data } = response
         console.log('data', data);
-    })
+
+        // Looping through each result item
+        for (var j = 0; j < data.length; j++) {
+
+            var favShowDiv = $("<div>");
+
+            var r = $("<p>").text("Rating: " + data[j].rating);
+            console.log(data[j].rating);
+
+            var favShowImage = $("<img>");
+
+            favShowImage.attr("src", data[j].images.fixed_height.url);
+
+            favShowDiv.append(r);
+            favShowDiv.append(favShowImage);
+
+
+            $("#view-gif").prepend(favShowDiv);
+        }
+    });
 
 });
 
@@ -64,7 +83,7 @@ function populateButtons() {
 };
 
 
-$("#submit-button").on("click", function(event){
+$("#submit-button").on("click", function (event) {
 
     var usersShow = $("#series-input").val().trim();
 
