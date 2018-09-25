@@ -46,22 +46,27 @@ $(document).on("click", ".favShow-btn", function () {
         var { data } = response
         console.log('data', data);
 
-        // Looping through each result item
+        // Looping through each result item.
         for (var j = 0; j < data.length; j++) {
 
+            // Creating and storing a div tag
             var favShowDiv = $("<div>");
 
+            // Creating a paragraph tag with the data item's rating.
             var r = $("<p>").text("Rating: " + data[j].rating);
             console.log(data[j].rating);
 
+            // Creating and storing an image tag.
             var favShowImage = $("<img>");
 
+            // Setting the src attribute of the image to a property pulled off the data item.
             favShowImage.attr("src", data[j].images.fixed_height.url);
 
+            // Appending the paragraph (rating) and the image to the favShowDiv.
             favShowDiv.append(r);
             favShowDiv.append(favShowImage);
 
-
+            // Prepending the favShowDiv to the HTML page in the "#view-gif" div.
             $("#view-gif").prepend(favShowDiv);
         }
     });
