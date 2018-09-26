@@ -24,7 +24,7 @@ var shows = [
     "entourage",
     "game of thrones",
     "ozark",
-    "the frontier",
+    "the simpsons",
     "ballers",
     "the office",
     "hard knocks",
