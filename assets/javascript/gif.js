@@ -37,7 +37,7 @@ var shows = [
 // When the user clicks on their favorite show button the user gets a limit of 30 gifs.
 $(document).on("click", ".favShow-btn", function () {
     var type = $(this).attr("data-type")
-    var queryURL = `https://api.giphy.com/v1/gifs/search?q=${type}&api_key=nAYiFzfJkuua9j5fYUuu56apbYxVYmEp&limit=30`;
+    var queryURL = `https://api.giphy.com/v1/gifs/search?q=${type}&api_key=nAYiFzfJkuua9j5fYUuu56apbYxVYmEp&limit=10`;
 
     $.ajax({
         url: queryURL,
