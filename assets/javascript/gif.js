@@ -20,6 +20,7 @@
 // How could I make the image when clicked play?
 // I could have a click function.
 
+// Array of Shows.
 var shows = [
     "entourage",
     "game of thrones",
@@ -33,7 +34,7 @@ var shows = [
     "californication",
 ];
 
-
+// When the user clicks on their favorite show button the user gets a limit of 30 gifs.
 $(document).on("click", ".favShow-btn", function () {
     var type = $(this).attr("data-type")
     var queryURL = `https://api.giphy.com/v1/gifs/search?q=${type}&api_key=nAYiFzfJkuua9j5fYUuu56apbYxVYmEp&limit=30`;
@@ -90,7 +91,9 @@ $(document).on("click", ".favShow-btn", function () {
 });
 
 
-
+// This function populates the button.  In other words it creates the user's input for their show and makes a button.
+// This function also gives the button a class, an attribute, and puts the text within the button.
+// Then it appends the button to the view button div.
 function populateButtons() {
     $("#view-button").empty();
 
@@ -103,7 +106,7 @@ function populateButtons() {
     }
 };
 
-
+// When the submit button is clicked it pushes the user's input to the show array and then the populateButtons() function is called and creates that button.
 $("#submit-button").on("click", function (event) {
 
     var usersShow = $("#series-input").val().trim();
